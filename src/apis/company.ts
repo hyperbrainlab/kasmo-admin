@@ -36,6 +36,13 @@ export const updateCompany = async (
   return client.put<Company>(`/biz/${id}`, body);
 };
 
+export const setOwner = async (
+  companyId: number,
+  body: { ownerId: number }
+): AxiosPromise<void> => {
+  return client.post<void>(`/biz/${companyId}/owner`, body);
+};
+
 export const deleteCompany = async (id: number): AxiosPromise<void> => {
   return client.delete<void>(`/biz/${id}`);
 };

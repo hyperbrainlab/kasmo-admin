@@ -13,12 +13,12 @@ import { columns as userColumns } from "./constants/table";
 import { columns as companyColumns } from "../company/constants/table";
 
 import { useQuery } from "@tanstack/react-query";
-import { getUser, updateUser } from "src/apis/user";
+import { getUser } from "src/apis/user";
 import { generateRows as generateUserRows } from "./utils";
 import { generateRows as generateCompanyRows } from "../company/utils";
 import { useMemo, useState } from "react";
 
-import { getCompany } from "src/apis/company";
+import { getCompany, setOwner } from "src/apis/company";
 import { Company } from "src/types/company";
 import { UserProfileResponse } from "src/types/user";
 
@@ -106,8 +106,8 @@ export default function UserPage() {
     try {
       if (!selectedCompanyRow || !selectedUserRow) return;
 
-      await updateUser(selectedUserRow.id, {
-        companyId: selectedCompanyRow.id,
+      await setOwner(selectedCompanyRow.id, {
+        ownerId: selectedUserRow.id,
       });
 
       refetch();
