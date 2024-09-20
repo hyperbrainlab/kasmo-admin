@@ -41,7 +41,6 @@ export type CreateCompanyRequest = {
   email: string;
   website: string;
   address: string;
-  owner: number;
 };
 
 export type UpdateCompanyRequest = Partial<CreateCompanyRequest>;

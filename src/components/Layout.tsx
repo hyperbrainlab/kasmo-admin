@@ -13,6 +13,7 @@ import {
   Menu,
   MenuItem,
   IconButton,
+  Container,
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useState, MouseEvent } from "react";
@@ -50,40 +51,42 @@ export default function Layout() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      >
-        <Link
-          to="/"
-          style={{
-            textDecoration: "none",
-            color: "inherit",
-          }}
-        >
-          <Toolbar>
-            <Typography variant="h6" noWrap component="div">
-              Kasmo Admin
-            </Typography>
-          </Toolbar>
-        </Link>
-        {/* {data && (
-          <Box>
-            <IconButton onClick={handleMenuOpen} color="inherit">
-              <Avatar alt={userName} src={avatarUrl} />
-            </IconButton>
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleMenuClose}
+      <AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, p: 0, m: 0 }}>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Link
+              to="/"
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+              }}
             >
-              <MenuItem onClick={logout}>Logout</MenuItem>
-            </Menu>
-            <Typography variant="body1" sx={{ ml: 2 }}>
-              {userName}
-            </Typography>
-          </Box>
-        )} */}
+              <Toolbar>
+                <Typography variant="h6" noWrap component="div">
+                  Kasmo Admin
+                </Typography>
+              </Toolbar>
+            </Link>
+
+            {data && (
+              <Box sx={{ ml: "auto" }}>
+                <IconButton onClick={handleMenuOpen} color="inherit">
+                  <Avatar alt={userName} src={avatarUrl} />
+                </IconButton>
+                <Menu
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl)}
+                  onClose={handleMenuClose}
+                >
+                  <MenuItem onClick={logout}>Logout</MenuItem>
+                </Menu>
+                <Typography variant="body1" sx={{ ml: 2 }}>
+                  {userName}
+                </Typography>
+              </Box>
+            )}
+          </Toolbar>
+        </Container>
       </AppBar>
       <Drawer
         variant="permanent"
@@ -98,7 +101,7 @@ export default function Layout() {
         }}
       >
         <Toolbar />
-        <Box sx={{ overflow: "auto" }}>
+        <Box sx={{ overflow: "auto", mt: 4 }}>
           <List>
             <ListItem>
               <ListItemButton component="a" href="/user">
@@ -130,6 +133,7 @@ export default function Layout() {
           flexGrow: 1,
           bgcolor: "background.default",
           p: 3,
+          mt: 4,
         }}
       >
         <Toolbar />

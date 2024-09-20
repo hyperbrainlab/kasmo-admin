@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export const client = axios.create({
-  // baseURL: "http://ec2-3-139-226-20.us-east-2.compute.amazonaws.com:8080",
-  baseURL: "http://localhost:8080",
+  baseURL: "http://ec2-3-139-226-20.us-east-2.compute.amazonaws.com:8080",
+  // baseURL: "http://localhost:8080",
 });
 
 client.interceptors.request.use(
@@ -23,10 +23,10 @@ client.interceptors.response.use(
     return response;
   },
   (error) => {
-    // if (error.response && error.response.status === 401) {
-    //   localStorage.removeItem("token");
-    //   window.location.href = "/login";
-    // }
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
     return Promise.reject(error);
   }
 );
