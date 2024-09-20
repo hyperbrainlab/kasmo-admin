@@ -16,8 +16,8 @@ import {
   Container,
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { useState, MouseEvent } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { useState, MouseEvent, useEffect } from "react";
+import { Link, Outlet, useNavigate, redirect } from "react-router-dom";
 import { getUserProfile } from "src/apis/user";
 
 const drawerWidth = 240;
@@ -47,6 +47,17 @@ export default function Layout() {
     localStorage.removeItem("token");
     navigate("/login");
   };
+
+  useEffect(() => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        redirect("/login");
+      }
+    } catch {
+      // do nothing
+    }
+  }, []);
 
   return (
     <Box sx={{ display: "flex" }}>
