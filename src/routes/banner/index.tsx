@@ -11,6 +11,7 @@ import {
   Select,
   MenuItem,
   SelectChangeEvent,
+  Switch,
 } from "@mui/material";
 import {
   DataGrid,
@@ -86,6 +87,7 @@ export default function BannerPage() {
       order: 0,
       imageUrl: "",
       description: "",
+      enabled: true,
     }
   );
 
@@ -317,6 +319,19 @@ export default function BannerPage() {
             rows={4}
             fullWidth
           />
+          <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
+            <Typography>Enabled</Typography>
+            <Switch
+              name="enabled"
+              checked={formData.enabled}
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  enabled: e.target.checked,
+                });
+              }}
+            />
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)} color="secondary">

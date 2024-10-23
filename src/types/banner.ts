@@ -9,6 +9,7 @@ export type BannerResponse = {
   order: number;
   imageUrl: string;
   description: string;
+  enabled: boolean;
 };
 
 export type CreateBannerRequest = Omit<BannerResponse, "id">;

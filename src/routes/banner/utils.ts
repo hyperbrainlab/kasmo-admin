@@ -8,4 +8,5 @@ export const generateRows = (data: BannerResponse[]) =>
     startDate: banner?.startDate,
     endDate: banner?.endDate,
     order: banner?.order,
+    enabled: banner?.enabled,
   }));

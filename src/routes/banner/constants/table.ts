@@ -29,6 +29,12 @@ const columns: GridColDef[] = [
     width: 120,
   },
   {
+    field: "enabled",
+    headerName: "Enabled",
+    type: "boolean",
+    width: 120,
+  },
+  {
     field: "edit",
     headerName: "Edit",
     width: 90,
