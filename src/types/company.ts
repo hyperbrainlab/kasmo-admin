@@ -32,6 +32,8 @@ export type Company = {
   email: string;
   website: string;
   address: string;
+  latitude: string;
+  longitude: string;
 };
 
 export type CreateCompanyRequest = {

@@ -81,6 +81,8 @@ export default function CompanyPage() {
       email: "",
       website: "",
       address: "",
+      latitude: "",
+      longitude: "",
     }
   );
 
@@ -153,9 +155,7 @@ export default function CompanyPage() {
       }
 
       handleSuccess();
-
       setOpen(false);
-
       refetch();
     } catch {
       handleError();
@@ -233,7 +233,9 @@ export default function CompanyPage() {
     !formData.telNo ||
     !formData.email ||
     !formData.website ||
-    !formData.address;
+    !formData.address ||
+    !formData.latitude ||
+    !formData.longitude;
 
   return (
     <>
@@ -319,6 +321,24 @@ export default function CompanyPage() {
             label="Address"
             name="address"
             value={formData.address}
+            onChange={handleInputChange}
+            fullWidth
+          />
+          <TextField
+            type="number"
+            margin="dense"
+            label="Latitude"
+            name="latitude"
+            value={formData.latitude}
+            onChange={handleInputChange}
+            fullWidth
+          />
+          <TextField
+            type="number"
+            margin="dense"
+            label="Longitude"
+            name="longitude"
+            value={formData.longitude}
             onChange={handleInputChange}
             fullWidth
           />
