@@ -7,6 +7,7 @@ export const generateRows = (data: BannerResponse[]) =>
     subCategory: banner?.subCategory,
     startDate: banner?.startDate,
     endDate: banner?.endDate,
+    imageUrl: banner?.imageUrl,
     order: banner?.order,
     enabled: banner?.enabled,
   }));

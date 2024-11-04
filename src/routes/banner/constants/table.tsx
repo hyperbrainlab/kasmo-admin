@@ -23,6 +23,15 @@ const columns: GridColDef[] = [
     width: 200,
   },
   {
+    field: "imageUrl",
+    headerName: "Image",
+    width: 130,
+    renderCell: (params) =>
+      params.value ? (
+        <img src={params.value} alt="" style={{ width: 48, height: 48 }} />
+      ) : null,
+  },
+  {
     field: "order",
     headerName: "Order",
     type: "number",
