@@ -6,6 +6,7 @@ import UserPage from "./user";
 import PostPage from "./post";
 import CompanyPage from "./company";
 import BannerPage from "./banner";
+import NotiPage from "./noti";
 import ErrorPage from "./error-page";
 import LoginPage from "./login";
 
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "banner",
         element: <BannerPage />,
+      },
+      {
+        path: "noti",
+        element: <NotiPage />,
       },
     ],
   },

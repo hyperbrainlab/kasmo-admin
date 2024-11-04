@@ -115,6 +115,11 @@ export default function Layout() {
         <Box sx={{ overflow: "auto", mt: 4 }}>
           <List>
             <ListItem>
+              <ListItemButton component="a" href="/noti">
+                <ListItemText primary="Notification" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem>
               <ListItemButton component="a" href="/user">
                 <ListItemText primary="User" />
               </ListItemButton>
