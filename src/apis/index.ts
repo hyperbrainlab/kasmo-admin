@@ -3,6 +3,15 @@ import axios from "axios";
 export const client = axios.create({
   baseURL: "http://ec2-3-139-226-20.us-east-2.compute.amazonaws.com:8080",
   // baseURL: "http://localhost:8080",
+  transformRequest: [
+    (data) => {
+      if (data instanceof FormData) {
+        return data;
+      }
+
+      return JSON.stringify(data);
+    },
+  ],
 });
 
 client.interceptors.request.use(

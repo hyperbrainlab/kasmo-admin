@@ -19,6 +19,7 @@ import {
   GridRowSelectionModel,
   GridToolbarContainer,
 } from "@mui/x-data-grid";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import dayjs from "dayjs";
 
 import { columns } from "./constants/table";
@@ -37,6 +38,7 @@ import Notification, { NotificationType } from "src/components/Notification";
 
 export default function BannerPage() {
   const [open, setOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const { data = [], refetch } = useQuery({
     queryKey: ["banner"],
@@ -114,6 +116,16 @@ export default function BannerPage() {
     });
   };
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setSelectedFile(event.target.files[0]);
+      setFormData({
+        ...formData,
+        imageUrl: URL.createObjectURL(event.target.files[0]),
+      });
+    }
+  };
+
   const handleSelectChange = (
     event: SelectChangeEvent<Categories | SubCategories>
   ) => {
@@ -126,18 +138,30 @@ export default function BannerPage() {
 
   const handleSave = async () => {
     try {
+      const formDataToSend = new FormData();
+
+      if (selectedFile) {
+        formDataToSend.append("file", selectedFile);
+      }
+
+      formDataToSend.append("category", formData.category);
+      formDataToSend.append("subCategory", formData.subCategory);
+      formDataToSend.append("startDate", formData.startDate);
+      formDataToSend.append("endDate", formData.endDate);
+      formDataToSend.append("order", formData.order.toString());
+      formDataToSend.append("description", formData.description);
+      formDataToSend.append("enabled", formData.enabled.toString());
+
       if (formData.id) {
         if (!selectedRow) return;
-
-        await updateBanner(selectedRow.id, formData);
+        await updateBanner(selectedRow.id, formDataToSend);
       } else {
-        await createBanner(formData);
+        await createBanner(formDataToSend);
       }
 
       handleSuccess();
-
       setOpen(false);
-
+      setSelectedFile(null);
       refetch();
     } catch {
       handleError();
@@ -155,6 +179,7 @@ export default function BannerPage() {
                   onClick={() => {
                     setSelectedRow(params.row as Omit<BannerResponse, "owner">);
                     setFormData(params.row as Omit<BannerResponse, "owner">);
+                    setSelectedFile(null);
                     setOpen(true);
                   }}
                 >
@@ -174,7 +199,22 @@ export default function BannerPage() {
           variant="contained"
           color="info"
           size="small"
-          onClick={() => setOpen(true)}
+          onClick={() => {
+            setSelectedRow(null);
+            setSelectedFile(null);
+            setFormData({
+              id: 0,
+              category: Categories.BUSINESS_MEETINGS,
+              subCategory: SubCategories.ADVERTISEMENT,
+              startDate: new Date().toISOString(),
+              endDate: new Date().toISOString(),
+              order: 0,
+              imageUrl: "",
+              description: "",
+              enabled: true,
+            });
+            setOpen(true);
+          }}
         >
           Create
         </Button>
@@ -197,16 +237,12 @@ export default function BannerPage() {
     !formData.subCategory ||
     !formData.startDate ||
     !formData.endDate ||
-    !formData.imageUrl ||
-    !formData.description;
+    !formData.description ||
+    !(selectedFile || formData.imageUrl);
 
   return (
     <>
-      <Box
-        style={{
-          flex: 1,
-        }}
-      >
+      <Box style={{ flex: 1 }}>
         <Typography variant="h4" component="h4">
           Banner
         </Typography>
@@ -301,14 +337,39 @@ export default function BannerPage() {
             onChange={handleInputChange}
             fullWidth
           />
-          <TextField
-            margin="dense"
-            label="Image URL"
-            name="imageUrl"
-            value={formData.imageUrl}
-            onChange={handleInputChange}
-            fullWidth
-          />
+
+          {/* 파일 업로드로 변경 */}
+          <Box sx={{ mt: 2, mb: 2 }}>
+            <input
+              accept="image/*"
+              style={{ display: "none" }}
+              id="raised-button-file"
+              type="file"
+              onChange={handleFileChange}
+            />
+            <label htmlFor="raised-button-file">
+              <Button
+                variant="outlined"
+                component="span"
+                startIcon={<CloudUploadIcon />}
+                fullWidth
+              >
+                {selectedFile ? selectedFile.name : "Upload Image"}
+              </Button>
+            </label>
+          </Box>
+
+          {/* 이미지 미리보기 */}
+          {(selectedFile || formData.imageUrl) && (
+            <Box sx={{ mt: 2, textAlign: "center" }}>
+              <img
+                src={formData.imageUrl}
+                alt="Preview"
+                style={{ maxWidth: "100%", maxHeight: "200px" }}
+              />
+            </Box>
+          )}
+
           <TextField
             margin="dense"
             label="Description"

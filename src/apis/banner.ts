@@ -1,8 +1,4 @@
-import {
-  BannerResponse,
-  CreateBannerRequest,
-  UpdateBannerRequest,
-} from "src/types/banner";
+import { BannerResponse } from "src/types/banner";
 import { client } from "./index";
 import { AxiosPromise } from "axios";
 
@@ -19,14 +15,22 @@ export const deleteBanner = async (id: number): AxiosPromise<void> => {
 };
 
 export const createBanner = async (
-  body: CreateBannerRequest
+  formData: FormData
 ): AxiosPromise<BannerResponse> => {
-  return client.post<BannerResponse>("/banner", body);
+  return client.post<BannerResponse>("/banner", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };
 
 export const updateBanner = async (
   id: number,
-  body: UpdateBannerRequest
+  formData: FormData
 ): AxiosPromise<BannerResponse> => {
-  return client.put<BannerResponse>(`/banner/${id}`, body);
+  return client.put<BannerResponse>(`/banner/${id}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };
