@@ -10,4 +10,5 @@ export const generateRows = (data: BannerResponse[]) =>
     imageUrl: banner?.imageUrl,
     order: banner?.order,
     enabled: banner?.enabled,
+    description: banner?.description,
   }));

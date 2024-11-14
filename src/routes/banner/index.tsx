@@ -269,7 +269,7 @@ export default function BannerPage() {
       >
         <DialogContent>
           <FormControl fullWidth margin="dense">
-            <InputLabel>Category</InputLabel>
+            <InputLabel>카테고리</InputLabel>
             <Select
               name="category"
               value={formData.category}
@@ -283,7 +283,7 @@ export default function BannerPage() {
             </Select>
           </FormControl>
           <FormControl fullWidth margin="dense">
-            <InputLabel>Sub Category</InputLabel>
+            <InputLabel>서브 카테고리</InputLabel>
             <Select
               name="subCategory"
               value={formData.subCategory}
@@ -298,7 +298,7 @@ export default function BannerPage() {
           </FormControl>
           <TextField
             margin="dense"
-            label="Start Date"
+            label="시작일"
             name="startDate"
             type="date"
             value={
@@ -314,7 +314,7 @@ export default function BannerPage() {
           />
           <TextField
             margin="dense"
-            label="End Date"
+            label="종료일"
             name="endDate"
             type="date"
             value={
@@ -330,7 +330,7 @@ export default function BannerPage() {
           />
           <TextField
             margin="dense"
-            label="Order"
+            label="순서"
             name="order"
             type="number"
             value={formData.order}
@@ -372,7 +372,7 @@ export default function BannerPage() {
 
           <TextField
             margin="dense"
-            label="Description"
+            label="설명"
             name="description"
             value={formData.description}
             onChange={handleInputChange}
@@ -381,7 +381,7 @@ export default function BannerPage() {
             fullWidth
           />
           <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
-            <Typography>Enabled</Typography>
+            <Typography>활성여부</Typography>
             <Switch
               name="enabled"
               checked={formData.enabled}
