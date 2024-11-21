@@ -1,4 +1,5 @@
 import { GridColDef } from "@mui/x-data-grid";
+import { mapCategoryToLabel, mapSubCategoryToLabel } from "../utils";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
@@ -6,11 +7,13 @@ const columns: GridColDef[] = [
     field: "category",
     headerName: "카테고리",
     width: 170,
+    renderCell: (params) => mapCategoryToLabel(params.value),
   },
   {
     field: "subCategory",
     headerName: "서브 카테고리",
     width: 170,
+    renderCell: (params) => mapSubCategoryToLabel(params.value),
   },
   {
     field: "startDate",

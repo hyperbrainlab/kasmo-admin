@@ -24,7 +24,11 @@ import dayjs from "dayjs";
 
 import { columns } from "./constants/table";
 import { useQuery } from "@tanstack/react-query";
-import { generateRows } from "./utils";
+import {
+  generateRows,
+  mapCategoryToLabel,
+  mapSubCategoryToLabel,
+} from "./utils";
 import {
   bulkDeleteBanner,
   createBanner,
@@ -277,7 +281,7 @@ export default function BannerPage() {
             >
               {Object.values(Categories).map((category) => (
                 <MenuItem key={category} value={category}>
-                  {category}
+                  {mapCategoryToLabel(category)}
                 </MenuItem>
               ))}
             </Select>
@@ -291,7 +295,7 @@ export default function BannerPage() {
             >
               {Object.values(SubCategories).map((subCategory) => (
                 <MenuItem key={subCategory} value={subCategory}>
-                  {subCategory}
+                  {mapSubCategoryToLabel(subCategory)}
                 </MenuItem>
               ))}
             </Select>
