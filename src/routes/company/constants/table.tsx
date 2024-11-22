@@ -24,7 +24,7 @@ const columns: GridColDef[] = [
   {
     field: "owner",
     headerName: "Owner",
-    width: 90,
+    width: 170,
     valueGetter: (value: UserProfileResponse) => value?.name || "",
   },
   {

@@ -87,6 +87,7 @@ export default function PostPage() {
 
     try {
       const ids = selectedRows.map((id) => id as number);
+
       await bulkDeletePost(ids);
 
       handleSuccess();
@@ -121,7 +122,7 @@ export default function PostPage() {
           color="secondary"
           style={{ marginLeft: 10 }}
           size="small"
-          onCanPlay={handleDelete}
+          onClick={handleDelete}
           disabled={selectedRows.length === 0 || isLoading}
         >
           Delete Selected
@@ -149,8 +150,6 @@ export default function PostPage() {
         ? {
             ...column,
             renderCell: ({ row }: { row: PostResponse }) => {
-              console.log(row);
-
               return (
                 <GridActionsCellItem
                   icon={

@@ -33,13 +33,13 @@ export default function UserPage() {
     null
   );
 
-  const { data: userData = [], refetch } = useQuery({
+  const { data: userData = [], refetch: refetchUsers } = useQuery({
     queryKey: ["user"],
     queryFn: getUser,
     select: (data) => generateUserRows(data.data),
   });
 
-  const { data: companyData = [] } = useQuery({
+  const { data: companyData = [], refetch: refetchCompanies } = useQuery({
     queryKey: ["company"],
     queryFn: getCompany,
     select: (data) => generateCompanyRows(data.data.data),
@@ -102,6 +102,10 @@ export default function UserPage() {
     []
   );
 
+  const columns = useMemo(() => {
+    return companyColumns.filter((column) => column.field !== "edit");
+  }, []);
+
   const handleConfirm = async () => {
     try {
       if (!selectedCompanyRow || !selectedUserRow) return;
@@ -110,7 +114,8 @@ export default function UserPage() {
         ownerId: selectedUserRow.id,
       });
 
-      refetch();
+      refetchUsers();
+      refetchCompanies();
       handleSuccess();
     } catch {
       handleError();
@@ -147,10 +152,10 @@ export default function UserPage() {
         fullWidth
       >
         <DialogContent>
-          <div style={{ height: 300, width: "100%" }}>
+          <div style={{ height: 600, width: "100%" }}>
             <DataGrid
               rows={companyData}
-              columns={companyColumns}
+              columns={columns}
               initialState={{
                 pagination: {
                   paginationModel: { page: 0, pageSize: 5 },

@@ -68,10 +68,6 @@ export default function CompanyPage() {
     });
   };
 
-  const handleClose = () => {
-    setNotification((prev) => ({ ...prev, open: false }));
-  };
-
   const [formData, setFormData] = useState<Omit<Company, "owner">>(
     selectedRow || {
       id: 0,
@@ -85,6 +81,10 @@ export default function CompanyPage() {
       longitude: "",
     }
   );
+
+  const handleClose = () => {
+    setNotification((prev) => ({ ...prev, open: false }));
+  };
 
   const { data = [], refetch } = useQuery({
     queryKey: ["company"],
@@ -187,7 +187,20 @@ export default function CompanyPage() {
           variant="contained"
           color="info"
           size="small"
-          onClick={() => setOpen(true)}
+          onClick={() => {
+            setFormData({
+              id: 0,
+              name: "",
+              category: BusinessDirectoryCategories.RELIGION,
+              telNo: "",
+              email: "",
+              website: "",
+              address: "",
+              latitude: "",
+              longitude: "",
+            });
+            setOpen(true);
+          }}
         >
           Create
         </Button>
@@ -214,6 +227,7 @@ export default function CompanyPage() {
               renderCell: (params) => (
                 <Button
                   onClick={() => {
+                    console.log(params.row);
                     setSelectedRow(params.row as Omit<Company, "owner">);
                     setFormData(params.row as Omit<Company, "owner">);
                     setOpen(true);
@@ -265,7 +279,9 @@ export default function CompanyPage() {
       </Box>
       <Dialog
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={() => {
+          setOpen(false);
+        }}
         fullWidth
         maxWidth="sm"
       >

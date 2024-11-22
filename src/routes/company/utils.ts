@@ -10,4 +10,6 @@ export const generateRows = (data: Company[]) =>
     email: company?.email,
     website: company?.website,
     address: company?.address,
+    latitude: company?.latitude,
+    longitude: company?.longitude,
   }));

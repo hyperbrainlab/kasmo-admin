@@ -20,13 +20,15 @@ const columns: GridColDef[] = [
     field: "provider",
     headerName: "Provider",
     width: 130,
-    renderCell: (params) => (
-      <Chip
-        label={params?.value?.split("_").join(" ")?.toUpperCase()}
-        color="primary"
-        size="small"
-      />
-    ),
+    renderCell: (params) => {
+      const value = params?.value;
+
+      const label = value ? value.split("_").join(" ").toUpperCase() : "";
+
+      if (!label) return null;
+
+      return <Chip label={label} color="primary" size="small" />;
+    },
   },
   {
     field: "userType",

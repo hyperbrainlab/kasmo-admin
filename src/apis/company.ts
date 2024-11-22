@@ -40,7 +40,7 @@ export const setOwner = async (
   companyId: number,
   body: { ownerId: number }
 ): AxiosPromise<void> => {
-  return client.post<void>(`/biz/${companyId}/owner`, body);
+  return client.patch<void>(`/biz/${companyId}/owner`, body);
 };
 
 export const deleteCompany = async (id: number): AxiosPromise<void> => {
