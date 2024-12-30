@@ -58,7 +58,7 @@ export default function UserPage() {
   const handleSuccess = () => {
     setNotification({
       open: true,
-      message: "Operation was successful!",
+      message: "유저 추가 성공!",
       type: "success",
     });
   };
@@ -66,7 +66,7 @@ export default function UserPage() {
   const handleError = () => {
     setNotification({
       open: true,
-      message: "Something went wrong!",
+      message: "유저 추가 실패!",
       type: "error",
     });
   };
@@ -93,7 +93,7 @@ export default function UserPage() {
                   }}
                   size="small"
                 >
-                  Select Company
+                  주소록 추가
                 </Button>
               ),
             }
@@ -130,7 +130,7 @@ export default function UserPage() {
         }}
       >
         <Typography variant="h4" component="h4">
-          User
+          유저
         </Typography>
         <DataGrid
           sx={{ mt: 2 }}
@@ -141,7 +141,7 @@ export default function UserPage() {
               paginationModel: { page: 0, pageSize: 5 },
             },
           }}
-          pageSizeOptions={[10, 20]}
+          pageSizeOptions={[5, 10, 20, 50, 100]}
           slots={{ toolbar: Toolbar }}
         />
       </Box>
@@ -161,7 +161,7 @@ export default function UserPage() {
                   paginationModel: { page: 0, pageSize: 5 },
                 },
               }}
-              pageSizeOptions={[10, 20]}
+              pageSizeOptions={[5, 10, 20, 50, 100]}
               onRowClick={(params) => {
                 setSelectedCompanyRow(params.row);
               }}
@@ -175,7 +175,7 @@ export default function UserPage() {
             onClick={handleConfirm}
             color="primary"
           >
-            Confirm
+            확인
           </Button>
           <Button
             variant="contained"
@@ -183,7 +183,7 @@ export default function UserPage() {
             onClick={() => setOpen(false)}
             color="secondary"
           >
-            Close
+            닫기
           </Button>
         </DialogActions>
       </Dialog>

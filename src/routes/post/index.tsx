@@ -39,7 +39,7 @@ export default function PostPage() {
   const handleSuccess = () => {
     setNotification({
       open: true,
-      message: "Operation was successful!",
+      message: "게시글 업로드 성공!",
       type: "success",
     });
   };
@@ -47,7 +47,7 @@ export default function PostPage() {
   const handleError = () => {
     setNotification({
       open: true,
-      message: "Something went wrong!",
+      message: "게시글 업로드 실패!",
       type: "error",
     });
   };
@@ -114,7 +114,7 @@ export default function PostPage() {
             size="small"
             component="span"
           >
-            Bulk Upload
+            일괄 업로드
           </Button>
         </label>
         <Button
@@ -125,7 +125,7 @@ export default function PostPage() {
           onClick={handleDelete}
           disabled={selectedRows.length === 0 || isLoading}
         >
-          Delete Selected
+          선택 삭제
         </Button>
       </GridToolbarContainer>
     );
@@ -173,7 +173,7 @@ export default function PostPage() {
         }}
       >
         <Typography variant="h4" component="h4">
-          Post
+          게시글
         </Typography>
         <DataGrid
           sx={{ mt: 2 }}
@@ -184,7 +184,7 @@ export default function PostPage() {
               paginationModel: { page: 0, pageSize: 5 },
             },
           }}
-          pageSizeOptions={[10, 20]}
+          pageSizeOptions={[5, 10, 20, 50, 100]}
           slots={{ toolbar: Toolbar }}
           checkboxSelection
           onRowSelectionModelChange={setSelectedRows}

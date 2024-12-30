@@ -20,7 +20,7 @@ export default function CompanyPage() {
   const handleSuccess = () => {
     setNotification({
       open: true,
-      message: "Operation was successful!",
+      message: "알림 전송 성공!",
       type: "success",
     });
   };
@@ -28,7 +28,7 @@ export default function CompanyPage() {
   const handleError = () => {
     setNotification({
       open: true,
-      message: "Something went wrong!",
+      message: "알림 전송 실패!",
       type: "error",
     });
   };
@@ -74,7 +74,7 @@ export default function CompanyPage() {
       <FormControl fullWidth margin="dense">
         <TextField
           margin="dense"
-          label="Title"
+          label="제목"
           name="title"
           value={formData.title}
           onChange={handleInputChange}
@@ -83,7 +83,7 @@ export default function CompanyPage() {
         />
         <TextField
           margin="dense"
-          label="Body"
+          label="내용"
           name="body"
           value={formData.body}
           onChange={handleInputChange}
@@ -99,7 +99,7 @@ export default function CompanyPage() {
           disabled={hasEmpty || isLoading}
           onClick={handleSend}
         >
-          Send
+          전송
         </Button>
       </FormControl>
 

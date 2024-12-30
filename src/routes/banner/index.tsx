@@ -220,7 +220,7 @@ export default function BannerPage() {
             setOpen(true);
           }}
         >
-          Create
+          생성
         </Button>
         <Button
           variant="contained"
@@ -230,7 +230,7 @@ export default function BannerPage() {
           onClick={handleDelete}
           disabled={selectedRows.length === 0}
         >
-          Delete Selected
+          선택 삭제
         </Button>
       </GridToolbarContainer>
     );
@@ -248,7 +248,7 @@ export default function BannerPage() {
     <>
       <Box style={{ flex: 1 }}>
         <Typography variant="h4" component="h4">
-          Banner
+          배너
         </Typography>
         <DataGrid
           sx={{ mt: 2 }}
@@ -259,7 +259,7 @@ export default function BannerPage() {
               paginationModel: { page: 0, pageSize: 5 },
             },
           }}
-          pageSizeOptions={[10, 20]}
+          pageSizeOptions={[5, 10, 20, 50, 100]}
           slots={{ toolbar: Toolbar }}
           checkboxSelection
           onRowSelectionModelChange={setSelectedRows}
@@ -400,10 +400,10 @@ export default function BannerPage() {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)} color="secondary">
-            Cancel
+            취소
           </Button>
           <Button onClick={handleSave} color="primary" disabled={hasEmpty}>
-            Save
+            저장
           </Button>
         </DialogActions>
       </Dialog>

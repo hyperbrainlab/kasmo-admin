@@ -2,24 +2,58 @@ import { Chip } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "email", headerName: "Email", width: 180 },
-  { field: "bizName", headerName: "Business Name", width: 130 },
-  { field: "name", headerName: "Name", width: 130 },
+  {
+    field: "id",
+    headerName: "아이디",
+    width: 70,
+    align: "center",
+    headerAlign: "center",
+  },
+  {
+    field: "email",
+    headerName: "이메일",
+    width: 180,
+    align: "center",
+    headerAlign: "center",
+  },
+  {
+    field: "bizName",
+    headerName: "사업자명",
+    width: 130,
+    align: "center",
+    headerAlign: "center",
+  },
+  {
+    field: "name",
+    headerName: "이름",
+    width: 130,
+    align: "center",
+    headerAlign: "center",
+  },
   {
     field: "profileImageUrl",
-    headerName: "Profile Image",
+    headerName: "프로필 이미지",
     width: 130,
+    align: "center",
+    headerAlign: "center",
     renderCell: (params) =>
       params.value ? (
         <img src={params.value} alt="" style={{ width: 48, height: 48 }} />
       ) : null,
   },
-  { field: "phoneNo", headerName: "Phone", width: 170 },
+  {
+    field: "phoneNo",
+    headerName: "전화번호",
+    width: 170,
+    align: "center",
+    headerAlign: "center",
+  },
   {
     field: "provider",
-    headerName: "Provider",
+    headerName: "가입수단",
     width: 130,
+    align: "center",
+    headerAlign: "center",
     renderCell: (params) => {
       const value = params?.value;
 
@@ -32,36 +66,34 @@ const columns: GridColDef[] = [
   },
   {
     field: "userType",
-    headerName: "User Type",
+    headerName: "유저 유형",
     width: 130,
+    align: "center",
+    headerAlign: "center",
     renderCell: (params) => {
-      let userType = "USER";
+      let userType = "일반사용자";
 
       switch (params?.value) {
         case 2:
-          userType = "BUSINESS OWNER";
+          userType = "사업자";
           break;
         case 3:
-          userType = "ADVERTISER";
+          userType = "광고주";
           break;
         case 4:
-          userType = "ADMIN";
+          userType = "관리자";
           break;
       }
 
-      return (
-        <Chip
-          label={userType?.split("_").join(" ")?.toUpperCase()}
-          color="primary"
-          size="small"
-        />
-      );
+      return <Chip label={userType} color="primary" size="small" />;
     },
   },
   {
     field: "company",
-    headerName: "Company",
+    headerName: "주소록",
     width: 130,
+    align: "center",
+    headerAlign: "center",
     renderCell: () => {
       return <></>;
     },

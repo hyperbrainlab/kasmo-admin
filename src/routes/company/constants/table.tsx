@@ -3,16 +3,26 @@ import { GridColDef } from "@mui/x-data-grid";
 import { UserProfileResponse } from "src/types/user";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 70 },
+  {
+    field: "id",
+    headerName: "아이디",
+    width: 70,
+    align: "center",
+    headerAlign: "center",
+  },
   {
     field: "name",
-    headerName: "Name",
+    headerName: "이름",
     width: 90,
+    align: "center",
+    headerAlign: "center",
   },
   {
     field: "category",
-    headerName: "Category",
+    headerName: "카테고리",
     width: 90,
+    align: "center",
+    headerAlign: "center",
     renderCell: (params) => (
       <Chip
         label={params?.value?.split("_").join(" ")?.toUpperCase()}
@@ -23,34 +33,46 @@ const columns: GridColDef[] = [
   },
   {
     field: "owner",
-    headerName: "Owner",
+    headerName: "소유자",
     width: 170,
+    align: "center",
+    headerAlign: "center",
     valueGetter: (value: UserProfileResponse) => value?.name || "",
   },
   {
     field: "telNo",
-    headerName: "Tel No.",
+    headerName: "전화번호",
     width: 90,
+    align: "center",
+    headerAlign: "center",
   },
   {
     field: "email",
-    headerName: "Email",
+    headerName: "이메일",
     width: 170,
+    align: "center",
+    headerAlign: "center",
   },
   {
     field: "website",
-    headerName: "Web Site",
+    headerName: "웹사이트",
     width: 170,
+    align: "center",
+    headerAlign: "center",
   },
   {
     field: "address",
-    headerName: "Address",
+    headerName: "주소",
     width: 170,
+    align: "center",
+    headerAlign: "center",
   },
   {
     field: "edit",
-    headerName: "Edit",
+    headerName: "수정",
     width: 90,
+    align: "center",
+    headerAlign: "center",
   },
 ];
 

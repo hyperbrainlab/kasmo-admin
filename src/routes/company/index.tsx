@@ -179,7 +179,7 @@ export default function CompanyPage() {
             size="small"
             component="span"
           >
-            Bulk Upload
+            엑셀 업로드
           </Button>
         </label>
         <Button
@@ -202,7 +202,7 @@ export default function CompanyPage() {
             setOpen(true);
           }}
         >
-          Create
+          생성
         </Button>
         <Button
           variant="contained"
@@ -212,7 +212,7 @@ export default function CompanyPage() {
           onClick={handleDelete}
           disabled={selectedRows.length === 0 || isLoading}
         >
-          Delete Selected
+          선택 삭제
         </Button>
       </GridToolbarContainer>
     );
@@ -233,7 +233,7 @@ export default function CompanyPage() {
                     setOpen(true);
                   }}
                 >
-                  Edit
+                  수정
                 </Button>
               ),
             }
@@ -260,7 +260,7 @@ export default function CompanyPage() {
         }}
       >
         <Typography variant="h4" component="h4">
-          Company
+          업체
         </Typography>
         <DataGrid
           sx={{ mt: 2 }}
@@ -271,7 +271,7 @@ export default function CompanyPage() {
               paginationModel: { page: 0, pageSize: 5 },
             },
           }}
-          pageSizeOptions={[10, 20]}
+          pageSizeOptions={[5, 10, 20, 50, 100]}
           slots={{ toolbar: Toolbar }}
           checkboxSelection
           onRowSelectionModelChange={setSelectedRows}
@@ -288,14 +288,14 @@ export default function CompanyPage() {
         <DialogContent>
           <TextField
             margin="dense"
-            label="Name"
+            label="이름"
             name="name"
             value={formData.name}
             onChange={handleInputChange}
             fullWidth
           />
           <FormControl fullWidth margin="dense">
-            <InputLabel>Category</InputLabel>
+            <InputLabel>카테고리</InputLabel>
             <Select
               name="category"
               value={formData.category}
@@ -310,7 +310,7 @@ export default function CompanyPage() {
           </FormControl>
           <TextField
             margin="dense"
-            label="Phone Number"
+            label="전화번호"
             name="telNo"
             value={formData.telNo}
             onChange={handleInputChange}
@@ -318,7 +318,7 @@ export default function CompanyPage() {
           />
           <TextField
             margin="dense"
-            label="Email"
+            label="이메일"
             name="email"
             value={formData.email}
             onChange={handleInputChange}
@@ -326,7 +326,7 @@ export default function CompanyPage() {
           />
           <TextField
             margin="dense"
-            label="Website"
+            label="웹사이트"
             name="website"
             value={formData.website}
             onChange={handleInputChange}
@@ -334,7 +334,7 @@ export default function CompanyPage() {
           />
           <TextField
             margin="dense"
-            label="Address"
+            label="주소"
             name="address"
             value={formData.address}
             onChange={handleInputChange}
@@ -343,7 +343,7 @@ export default function CompanyPage() {
           <TextField
             type="number"
             margin="dense"
-            label="Latitude"
+            label="위도"
             name="latitude"
             value={formData.latitude}
             onChange={handleInputChange}
@@ -352,7 +352,7 @@ export default function CompanyPage() {
           <TextField
             type="number"
             margin="dense"
-            label="Longitude"
+            label="경도"
             name="longitude"
             value={formData.longitude}
             onChange={handleInputChange}
@@ -361,10 +361,10 @@ export default function CompanyPage() {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)} color="secondary">
-            Cancel
+            취소
           </Button>
           <Button onClick={handleSave} color="primary" disabled={hasEmpty}>
-            Save
+            저장
           </Button>
         </DialogActions>
       </Dialog>
