@@ -9,7 +9,7 @@ export default function Layout() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <Header drawerWidth={DRAWER_WIDTH} />
+      <Header />
       <Sidebar width={DRAWER_WIDTH} />
       <Box
         component="main"

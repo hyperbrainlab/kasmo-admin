@@ -14,11 +14,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getUserProfile } from "src/apis/user";
 
-interface HeaderProps {
-  drawerWidth: number;
-}
-
-export default function Header({ drawerWidth }: HeaderProps) {
+export default function Header() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
@@ -73,4 +69,4 @@ export default function Header({ drawerWidth }: HeaderProps) {
       </Container>
     </AppBar>
   );
-} 
+}
