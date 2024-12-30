@@ -2,8 +2,10 @@ import { BannerResponse } from "src/types/banner";
 import { client } from "./index";
 import { AxiosPromise } from "axios";
 
-export const getBanner = async (): AxiosPromise<BannerResponse[]> => {
-  return client.get<BannerResponse[]>("/banner");
+export const getBanner = async (query: {
+  limit: number;
+}): AxiosPromise<BannerResponse[]> => {
+  return client.get<BannerResponse[]>("/banner", { params: query });
 };
 
 export const bulkDeleteBanner = async (ids: number[]): AxiosPromise<void> => {

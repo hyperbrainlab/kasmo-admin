@@ -7,8 +7,10 @@ import { client } from "./index";
 import { AxiosPromise } from "axios";
 import { Paginated } from "src/types/pagination";
 
-export const getCompany = async (): AxiosPromise<Paginated<Company>> => {
-  return client.get<Paginated<Company>>("/biz");
+export const getCompany = async (query: {
+  limit: number;
+}): AxiosPromise<Paginated<Company>> => {
+  return client.get<Paginated<Company>>("/biz", { params: query });
 };
 
 export const bulkUploadCompany = async (body: FormData): AxiosPromise<void> => {

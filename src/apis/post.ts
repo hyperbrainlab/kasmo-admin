@@ -15,8 +15,10 @@ export const bulkDeletePost = async (ids: number[]): AxiosPromise<void> => {
   return client.delete<void>(`/post/bulk-delete`, { data: { ids } });
 };
 
-export const getPost = async (): AxiosPromise<Paginated<PostResponse>> => {
-  return client.get<Paginated<PostResponse>>("/post");
+export const getPost = async (query: {
+  limit: number;
+}): AxiosPromise<Paginated<PostResponse>> => {
+  return client.get<Paginated<PostResponse>>("/post", { params: query });
 };
 
 export const createPost = async (

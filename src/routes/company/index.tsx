@@ -55,7 +55,7 @@ export default function CompanyPage() {
   const handleSuccess = () => {
     setNotification({
       open: true,
-      message: "Operation was successful!",
+      message: "작업이 성공적으로 완료되었습니다!",
       type: "success",
     });
   };
@@ -63,7 +63,7 @@ export default function CompanyPage() {
   const handleError = () => {
     setNotification({
       open: true,
-      message: "Something went wrong!",
+      message: "오류가 발생했습니다!",
       type: "error",
     });
   };
@@ -88,7 +88,7 @@ export default function CompanyPage() {
 
   const { data = [], refetch } = useQuery({
     queryKey: ["company"],
-    queryFn: getCompany,
+    queryFn: () => getCompany({ limit: 50 }),
     select: (data) => generateRows(data.data.data),
   });
 
@@ -268,10 +268,10 @@ export default function CompanyPage() {
           columns={transformedColumns}
           initialState={{
             pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
+              paginationModel: { page: 0, pageSize: 50 },
             },
           }}
-          pageSizeOptions={[5, 10, 20, 50, 100]}
+          pageSizeOptions={[50]}
           slots={{ toolbar: Toolbar }}
           checkboxSelection
           onRowSelectionModelChange={setSelectedRows}

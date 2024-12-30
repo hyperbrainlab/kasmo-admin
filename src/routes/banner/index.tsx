@@ -46,7 +46,7 @@ export default function BannerPage() {
 
   const { data = [], refetch } = useQuery({
     queryKey: ["banner"],
-    queryFn: getBanner,
+    queryFn: () => getBanner({ limit: 50 }),
     select: (data) => generateRows(data.data),
   });
 
@@ -256,10 +256,10 @@ export default function BannerPage() {
           columns={transformedColumns}
           initialState={{
             pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
+              paginationModel: { page: 0, pageSize: 50 },
             },
           }}
-          pageSizeOptions={[5, 10, 20, 50, 100]}
+          pageSizeOptions={[50]}
           slots={{ toolbar: Toolbar }}
           checkboxSelection
           onRowSelectionModelChange={setSelectedRows}

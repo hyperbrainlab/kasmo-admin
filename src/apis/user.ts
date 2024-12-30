@@ -6,8 +6,10 @@ import {
 import { client } from "./index";
 import { AxiosPromise } from "axios";
 
-export const getUser = async (): AxiosPromise<UserProfileResponse[]> => {
-  return client.get<UserProfileResponse[]>("/user");
+export const getUser = async (query: {
+  limit: number;
+}): AxiosPromise<UserProfileResponse[]> => {
+  return client.get<UserProfileResponse[]>("/user", { params: query });
 };
 
 export const getUserProfile = async (): AxiosPromise<UserProfileResponse> => {

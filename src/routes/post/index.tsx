@@ -58,11 +58,13 @@ export default function PostPage() {
 
   const { data = [], refetch } = useQuery({
     queryKey: ["post"],
-    queryFn: getPost,
+    queryFn: () => getPost({ limit: 50 }),
     select: (data) => generateRows(data.data.data),
   });
 
   const handleFileUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+    if (isLoading) return;
+
     try {
       setIsLoading(true);
       const file = event.target.files?.[0];
@@ -74,6 +76,8 @@ export default function PostPage() {
 
         handleSuccess();
         refetch();
+
+        event.target.value = "";
       }
     } catch {
       handleError();
@@ -181,10 +185,10 @@ export default function PostPage() {
           columns={transformedColumns}
           initialState={{
             pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
+              paginationModel: { page: 0, pageSize: 50 },
             },
           }}
-          pageSizeOptions={[5, 10, 20, 50, 100]}
+          pageSizeOptions={[50]}
           slots={{ toolbar: Toolbar }}
           checkboxSelection
           onRowSelectionModelChange={setSelectedRows}

@@ -35,13 +35,13 @@ export default function UserPage() {
 
   const { data: userData = [], refetch: refetchUsers } = useQuery({
     queryKey: ["user"],
-    queryFn: getUser,
+    queryFn: () => getUser({ limit: 50 }),
     select: (data) => generateUserRows(data.data),
   });
 
   const { data: companyData = [], refetch: refetchCompanies } = useQuery({
     queryKey: ["company"],
-    queryFn: getCompany,
+    queryFn: () => getCompany({ limit: 50 }),
     select: (data) => generateCompanyRows(data.data.data),
   });
 
@@ -138,10 +138,10 @@ export default function UserPage() {
           columns={transformedColumns}
           initialState={{
             pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
+              paginationModel: { page: 0, pageSize: 50 },
             },
           }}
-          pageSizeOptions={[5, 10, 20, 50, 100]}
+          pageSizeOptions={[50]}
           slots={{ toolbar: Toolbar }}
         />
       </Box>
@@ -158,10 +158,10 @@ export default function UserPage() {
               columns={columns}
               initialState={{
                 pagination: {
-                  paginationModel: { page: 0, pageSize: 5 },
+                  paginationModel: { page: 0, pageSize: 50 },
                 },
               }}
-              pageSizeOptions={[5, 10, 20, 50, 100]}
+              pageSizeOptions={[50]}
               onRowClick={(params) => {
                 setSelectedCompanyRow(params.row);
               }}
